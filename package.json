@@ -1,0 +1,63 @@
+{
+  "name": "cipherframe-ui",
+  "version": "1.0.0",
+  "description": "CipherFrame — Cyberpunk terminal UI built with Electron, React, Vite and Tailwind",
+  "author": "Ikoko",
+  "license": "MIT",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev":          "node node_modules/electron-vite/bin/electron-vite.js dev",
+    "build":        "node node_modules/electron-vite/bin/electron-vite.js build",
+    "start":        "node node_modules/electron-vite/bin/electron-vite.js preview",
+    "package":      "node node_modules/electron-vite/bin/electron-vite.js build && electron-builder",
+    "package:win":  "node node_modules/electron-vite/bin/electron-vite.js build && electron-builder --win",
+    "package:mac":  "node node_modules/electron-vite/bin/electron-vite.js build && electron-builder --mac",
+    "package:linux":"node node_modules/electron-vite/bin/electron-vite.js build && electron-builder --linux"
+  },
+  "build": {
+    "appId": "com.cipherframe.ui",
+    "productName": "CipherFrame",
+    "directories": { "output": "release" },
+    "files": ["out/**/*", "node_modules/**/*", "package.json"],
+    "win": {
+      "target": "nsis",
+      "icon": "public/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "CipherFrame"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "public/icon.icns",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "icon": "public/icon.png",
+      "category": "Utility"
+    }
+  },
+  "dependencies": {
+    "@homebridge/node-pty-prebuilt-multiarch": "^0.13.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "systeminformation": "^5.31.4",
+    "xterm": "^5.3.0",
+    "xterm-addon-fit": "^0.8.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.4.27",
+    "electron": "25.9.8",
+    "electron-builder": "^24.9.1",
+    "electron-vite": "^2.0.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.19",
+    "vite": "^5.4.21"
+  }
+}
